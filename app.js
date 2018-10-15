@@ -43,7 +43,7 @@ bot.on('message', data => {
 
 function selectSubreddit()
 {
-    var subreddit_index = Math.floor(Math.random()*((subreddit.length()-1)-0+1)+0);
+    var subreddit_index = Math.floor(Math.random()*((subreddit.length-1)-0+1)+0);
     return subreddit[subreddit_index];
 }
 
