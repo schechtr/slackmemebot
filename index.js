@@ -1,7 +1,8 @@
 const SlackBot = require('slackbots');
 const axios = require('axios');
 const fs = require('fs');
-
+const channel = 'bots_setup';
+const subreddit = 'https://www.reddit.com/r/ProgrammerHumor/top/.json';
 
 var bot = new SlackBot({
     token: 'xoxb-85202238740-456015486690-dP7EbMbojSXQD04IBsxpBk83', //change token based on workspace 
@@ -29,19 +30,19 @@ bot.on('message', data => {
 
 function getMeme()
 {
-   axios.get('https://www.reddit.com/r/ProgrammerHumor/top/.json') //works with any subreddit
+   axios.get(subreddit) //works with any subreddit
     .then(res => { 
         
         var post_index = Math.floor(Math.random()*(10-0+1)+0); //get a random post index from the top 10
         var title = res.data.data.children[post_index].data.title;
-        bot.postMessageToChannel('1_memes', title);
+        bot.postMessageToChannel(channel, title);
         
         var meme = res.data.data.children[post_index].data.url;  
         if (meme.includes("imgur"))     
         {
             meme += ".jpg"  //imgur links dont go directly to a file so we can try to append .jpg
         }
-        bot.postMessageToChannel('1_memes', meme);
+        bot.postMessageToChannel(channel, meme);
 
     });
 
