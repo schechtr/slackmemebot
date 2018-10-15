@@ -19,7 +19,7 @@ bot.on('message', data => {
     if (data.type == 'message')
     {
         console.log(data.text);
-        if (data.text.includes("<@UDA0G8LAE")) //if user mentions the bot 
+        if (data.text.includes("<@UDA0G8LAE")) //if the bots tag is mentioned in the chat (id: may change based on workspace)
         {
             getMeme();
         }
@@ -39,7 +39,7 @@ function getMeme()
         var meme = res.data.data.children[post_index].data.url;  
         if (meme.includes("imgur"))     
         {
-            meme += ".jpg"  //imgur links dont go directly to a file so we append .jpg
+            meme += ".jpg"  //imgur links dont go directly to a file so we can try to append .jpg
         }
         bot.postMessageToChannel('1_memes', meme);
 
