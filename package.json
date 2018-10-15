@@ -1,0 +1,16 @@
+{
+  "name": "memebot",
+  "version": "1.0.0",
+  "description": "scrapes reddit for memes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Andrew Schechter",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "fs": "0.0.1-security",
+    "slackbots": "^1.1.0"
+  }
+}
