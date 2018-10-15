@@ -1,23 +1,25 @@
 var SlackBot = require('slackbots');
 var axios = require('axios');
 var fs = require('fs');
-var channel = 'bots_setup';
-var subreddit = 'https://www.reddit.com/r/ProgrammerHumor/top/.json';
-
 var express = require('express');
-var port = process.env.PORT || 3000;
+
+var channel = 'bots_setup'; //channel to post to 
+var subreddit = ['ProgrammerHumor', 'me_irl']; //subreddits to scrape from add
+
+
+//communication with heroku 
+var port = process.env.PORT || 3000;        
 var app = express();
 app.get('/', function (req, res) {
- res.send(JSON.stringify({ Hello: 'World'}));
+ res.send('Running...');
 });
 app.listen(port, function () {
- 
 
-});
+ });
 
 var bot = new SlackBot({
     token: 'xoxb-85202238740-456015486690-dP7EbMbojSXQD04IBsxpBk83', //change token based on workspace 
-    name: 'memebot' //name chosen at bot setup in workspace
+    name: 'memebot' //name chosen in bot setup in workspace
 
 });
 
@@ -35,16 +37,24 @@ bot.on('message', data => {
         {
             getMeme();
         }
+    
     }
 });
+
+function selectSubreddit()
+{
+    var subreddit_index = Math.floor(Math.random()*((subreddit.length()-1)-0+1)+0);
+    return subreddit[subreddit_index];
+}
+
 
 
 function getMeme()
 {
-   axios.get(subreddit) //works with any subreddit
+   axios.get('https://www.reddit.com/r/' + selectSubreddit(subreddit) + '/top/.json') //works with any subreddit
     .then(res => { 
         
-        var post_index = Math.floor(Math.random()*(10-0+1)+0); //get a random post index from the top 10
+        var post_index = Math.floor(Math.random()*(10-0+1)+0); //get a random post index from the top 10 on the page
         var title = res.data.data.children[post_index].data.title;
         bot.postMessageToChannel(channel, title);
         
