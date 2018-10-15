@@ -34,14 +34,14 @@ function getMeme()
         
         var post_index = Math.floor(Math.random()*(10-0+1)+0); //get a random post index from the top 10
         var title = res.data.data.children[post_index].data.title;
-        bot.postMessageToChannel('bots_setup', title);
+        bot.postMessageToChannel('1_memes', title);
         
         var meme = res.data.data.children[post_index].data.url;  
         if (meme.includes("imgur"))     
         {
             meme += ".jpg"  //imgur links dont go directly to a file so we can try to append .jpg
         }
-        bot.postMessageToChannel('bots_setup', meme);
+        bot.postMessageToChannel('1_memes', meme);
 
     });
 
