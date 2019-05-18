@@ -18,7 +18,7 @@ app.listen(port, function () {
  });
 
 var bot = new SlackBot({
-    token: 'xoxb-85202238740-456015486690-dP7EbMbojSXQD04IBsxpBk83', //change token based on workspace 
+    token: 'TOKEN_HERE', //change token based on workspace 
     name: 'memebot' //name chosen in bot setup in workspace
 
 });
