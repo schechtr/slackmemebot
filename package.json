@@ -9,7 +9,7 @@
   "author": "Andrew Schechter",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "slackbots": "^1.1.0"
